@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — MEKSTONE PHARMACEUTICALS LLP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #005b96;
+      --secondary: #0a75c2;
+      --accent: #8cc63f;
+      --text-dark: #2c3e50;
+      --text-light: #6d7a8a;
+      --white: #ffffff;
+      --light-bg: #f4f9ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+      color: var(--text-dark);
+    }
+
+    /* Loading Animation */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid var(--light-bg);
+      border-top: 5px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* NAVBAR */
+    nav {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      padding: 10px 6%;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .logo img {
+      width: 65px;
+      height: 65px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .logo-text {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      position: relative;
+      transition: color 0.3s;
+      padding: 5px 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--primary);
+      transition: transform 0.3s;
+    }
+
+    .menu-toggle:hover {
+      transform: rotate(90deg);
+    }
+
+    .nav-links.active {
+      display: flex;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      height: 40vh;
+      min-height: 300px;
+      background: linear-gradient(135deg, rgba(0, 91, 150, 0.8), rgba(10, 117, 194, 0.8)),
+        url('Images/Mekstone Logo.jpg') center/cover no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+    }
+
+    .hero>div {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      opacity: 0.95;
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 80px 6%;
+    }
+
+    /* ----------------------------
+       SOFT-UI / OPTION A — BODY STYLES
+       Replaces .controls, .search, .filter-group, .filter-select,
+       .view-toggle, .grid and tweaks .card styles for premium look
+       ---------------------------- */
+
+    /* Controls Panel */
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      background: #ffffff;
+      padding: 28px 35px;
+      border-radius: 22px;
+      box-shadow:
+        8px 8px 20px rgba(0, 0, 0, 0.08),
+        -6px -6px 20px rgba(255, 255, 255, 0.7);
+      border: 1px solid #eef2f7;
+      margin-bottom: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .controls:hover {
+      box-shadow:
+        12px 12px 30px rgba(0, 0, 0, 0.12),
+        -8px -8px 25px rgba(255, 255, 255, 0.9);
+    }
+
+    /* Search Bar */
+    .search {
+      flex: 1;
+      min-width: 280px;
+      position: relative;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 14px 18px 14px 52px;
+      border-radius: 16px;
+      border: none;
+      background: #f3f6fa;
+      box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.07),
+        inset -4px -4px 10px rgba(255, 255, 255, 0.7);
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .search input::placeholder {
+      color: #9aa6b6;
+      font-weight: 500;
+    }
+
+    .search input:focus {
+      outline: none;
+      background: #ffffff;
+      box-shadow: inset 4px 4px 12px rgba(0, 0, 0, 0.12),
+        inset -4px -4px 12px rgba(255, 255, 255, 0.9);
+    }
+
+    .search i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #8896a7;
+      font-size: 1.2rem;
+    }
+
+    /* Dropdown Filters */
+    .filter-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-select select {
+      padding: 14px 18px;
+      border: none;
+      border-radius: 16px;
+      background: #f3f6fa;
+      font-size: 0.95rem;
+      cursor: pointer;
+      width: 180px;
+      box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.07),
+        inset -4px -4px 10px rgba(255, 255, 255, 0.7);
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238896a7' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+      color: #334155;
+    }
+
+    .filter-select select:focus {
+      outline: none;
+      background: #ffffff;
+      box-shadow: inset 4px 4px 12px rgba(0, 0, 0, 0.12),
+        inset -4px -4px 12px rgba(255, 255, 255, 0.9);
+    }
+
+    /* View Toggle Buttons */
+    .view-toggle {
+      display: flex;
+      gap: 6px;
+      background: #f3f6fa;
+      padding: 6px;
+      border-radius: 16px;
+      box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.07),
+        inset -4px -4px 10px rgba(255, 255, 255, 0.7);
+    }
+
+    .view-toggle button {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: transparent;
+      border-radius: 12px;
+      cursor: pointer;
+      color: #7b8999;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .view-toggle button.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2),
+        -2px -2px 8px rgba(255, 255, 255, 0.6);
+    }
+
+    .view-toggle button:hover:not(.active) {
+      background: #e8edf3;
+    }
+
+    /* PRODUCT GRID — Soft UI Upgrade */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 40px;
+      margin-bottom: 80px;
+      animation: fadeIn 0.6s ease-out;
+      position: relative;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .grid.list-view {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    /* Product Card */
+    .card {
+      background: #ffffff;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow:
+        8px 8px 25px rgba(0, 0, 0, 0.08),
+        -6px -6px 25px rgba(255, 255, 255, 0.8);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 520px;
+      max-height: 520px;
+      border: 1px solid #eef2f7;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow:
+        12px 12px 35px rgba(0, 0, 0, 0.12),
+        -8px -8px 30px rgba(255, 255, 255, 0.9);
+      border-color: var(--primary);
+    }
+
+    .card.hidden {
+      display: none;
+    }
+
+    .card-image-container {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+      background: #f7f9fc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      border-bottom: 1px solid #eef2f7;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover .card-image {
+      transform: scale(1.08);
+    }
+
+    .card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+      min-height: 200px;
+      background: #ffffff;
+    }
+
+    .card-category {
+      display: inline-block;
+      background: #f0f7ff;
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      width: fit-content;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover .card-category {
+      background: var(--primary);
+      color: white;
+    }
+
+    .card-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      transition: color 0.3s ease;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      line-height: 1.3;
+    }
+
+    .card:hover .card-title {
+      color: var(--primary);
+    }
+
+    .card-meta {
+      color: #64748b;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 24px;
+      line-height: 1.5;
+    }
+
+    .card-meta i {
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid #eef2f7;
+      margin-top: auto;
+    }
+
+    .view-details {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .view-details:hover {
+      color: var(--accent);
+      gap: 10px;
+    }
+
+    .view-details i {
+      transition: transform 0.3s ease;
+    }
+
+    .view-details:hover i {
+      transform: translateX(3px);
+    }
+
+    /* LIST VIEW adjustments (keeps structure) */
+    .grid.list-view .card {
+      display: flex;
+      flex-direction: row;
+      max-width: 100%;
+    }
+
+    .grid.list-view .card-image-container {
+      width: 300px;
+      height: 200px;
+      flex-shrink: 0;
+    }
+
+    .grid.list-view .card-image {
+      height: 200px;
+    }
+
+    .grid.list-view .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* NO RESULTS */
+    .no-results {
+      text-align: center;
+      padding: 80px 20px;
+      display: none;
+    }
+
+    .no-results.show {
+      display: block;
+    }
+
+    .no-results i {
+      font-size: 5rem;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    .no-results h3 {
+      color: var(--text-dark);
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .no-results p {
+      color: var(--text-light);
+    }
+
+    /* PRODUCT MODAL (left unchanged except minor visual tweaks) */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      opacity: 0;
+      transition: opacity 0.3s;
+      overflow: hidden;
+    }
+
+    .modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      max-width: 1000px;
+      width: 90%;
+      max-height: 95vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      position: relative;
+      margin: 20px;
+      transform: scale(0.9);
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal.show .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: all 0.3s;
+    }
+
+    .modal-close:hover {
+      background: var(--primary);
+      transform: rotate(90deg);
+    }
+
+    .modal-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding: 40px;
+      position: relative;
+      overflow: visible;
+    }
+
+    .modal-image-container {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-image {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 2;
+      transition: transform 0.3s ease;
+    }
+
+    .modal-image:hover {
+      transform: scale(1.05);
+    }
+
+    .modal-info {
+      position: relative;
+    }
+
+    .modal-info h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .modal-info p {
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .modal-details {
+      background: var(--light-bg);
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* FOOTER (unchanged visual intention) */
+    footer {
+      background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
+      color: var(--white);
+      padding: 80px 5% 30px;
+      position: relative;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 50px;
+      margin-bottom: 50px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-col h4 {
+      color: var(--accent);
+      margin-bottom: 25px;
+      font-size: 1.3rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .footer-col p {
+      color: #ddd;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 15px;
+      transition: transform 0.3s;
+    }
+
+    .footer-col ul li:hover {
+      transform: translateX(5px);
+    }
+
+    .footer-col ul li a {
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-col ul li a::before {
+      content: '→';
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .footer-col ul li:hover a::before {
+      opacity: 1;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--accent);
+    }
+
+    .footer-col a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: var(--accent);
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 30px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 999;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 900px) {
+      .nav-links {
+        display: none;
+        position: fixed;
+        background: white;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        animation: slideDown 0.3s ease;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        padding: 15px 0;
+        width: 100%;
+      }
+
+      .nav-links li:hover {
+        background: var(--light-bg);
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero {
+        height: 30vh;
+        min-height: 250px;
+        background-attachment: fixed;
+      }
+
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 25px;
+        gap: 20px;
+      }
+
+      .controls::before {
+        display: none;
+      }
+
+      .view-toggle::before {
+        display: none;
+      }
+
+      .search {
+        min-width: 100%;
+      }
+
+      .filter-group {
+        width: 100%;
+      }
+
+      .filter-select {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .grid.list-view .card {
+        flex-direction: column;
+      }
+
+      .grid.list-view .card-image-container {
+        width: 100%;
+        height: 250px;
+      }
+
+      .modal-body {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px 20px;
+        overflow: visible;
+        max-height: none;
+      }
+
+      .modal-image-container {
+        padding: 15px;
+      }
+
+      .pharma-icon {
+        font-size: 1.5rem;
+      }
+
+      .modal-info h2 {
+        font-size: 1.5rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media(max-width: 600px) {
+      nav {
+        padding: 12px 4%;
+      }
+
+      .logo-text {
+        font-size: 1rem;
+      }
+
+      .logo img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .container {
+        padding: 50px 4%;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-image-container,
+      .card-image {
+        height: 250px;
+      }
+
+      .card {
+        min-height: 400px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- LOADING ANIMATION -->
+  <div class="loader" id="loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="logo" onclick="window.location.href='index.html'">
+      <img src="Images/Mekstone Logo.jpg" alt="Mekstone Logo">
+      <div class="logo-text">MEKSTONE PHARMACEUTICALS LLP</div>
+    </div>
+
+    <i class="fas fa-bars menu-toggle" id="menuToggle"></i>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="product.html" class="active">Products</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1>Product Portfolio</h1>
+      <p>Discover our comprehensive range of pharmaceutical products</p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <div class="controls" role="region" aria-label="Search and filters">
+      <div class="search">
+        <i class="fas fa-search"></i>
+        <input type="search" id="searchInput" placeholder="Search products (try: MEKMIN, KARPAN, HEMOMEK)">
+      </div>
+      <div class="filter-group">
+        <div class="filter-select">
+          <select id="categoryFilter" aria-label="Filter by category">
+            <option value="">All Categories</option>
+            <option value="injection">Injections</option>
+            <option value="tablet">Tablets</option>
+            <option value="capsule">Capsules</option>
+            <option value="supplement">Supplements</option>
+            <option value="antibiotic">Antibiotics</option>
+            <option value="analgesic">Analgesics</option>
+          </select>
+        </div>
+        <div class="view-toggle" role="tablist" aria-label="Change view">
+          <button class="view-btn grid-view active" data-view="grid" aria-pressed="true" aria-label="Grid view">
+            <i class="fas fa-th"></i>
+          </button>
+          <button class="view-btn list-view" data-view="list" aria-pressed="false" aria-label="List view">
+            <i class="fas fa-list"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="noResults" class="no-results">
+      <i class="fas fa-search"></i>
+      <h3>No Products Found</h3>
+      <p>Try adjusting your search or filter criteria</p>
+    </div>
+
+    <div id="grid" class="grid" aria-live="polite">
+      <!-- Product Cards -->
+      <div class="card" data-category="injection" data-name="karpan-iv">
+        <div class="card-image-container">
+          <img src="Images/p11.jpeg" alt="KARPAN-IV" class="card-image">
+        </div>
+        <div class="card-body">
+          <div class="card-category">Injection / IV</div>
+          <div class="card-title">KARPAN-IV</div>
+          <div class="card-meta">
+            <i class="fas fa-syringe"></i>
+            <span>Pantoprazole for Injection IP - 40 mg</span>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="view-details" onclick="openModal(event, 'karpan-iv')">
+              <span>View Details</span> <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-category="antibiotic" data-name="meksefta">
+        <div class="card-image-container">
+          <img src="Images/p3.jpeg" alt="MEKSEFTA" class="card-image">
+        </div>
+        <div class="card-body">
+          <div class="card-category">Antibiotic / Injection</div>
+          <div class="card-title">MEKSEFTA</div>
+          <div class="card-meta">
+            <i class="fas fa-syringe"></i>
+            <span>Ceftriaxone Injection IP - 1 gm</span>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="view-details" onclick="openModal(event, 'meksefta')">
+              <span>View Details</span> <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-category="tablet" data-name="karpan-40">
+        <div class="card-image-container">
+          <img src="Images/p5.jpeg" alt="KARPAN-40" class="card-image">
+        </div>
+        <div class="card-body">
+          <div class="card-category">Tablet</div>
+          <div class="card-title">KARPAN-40</div>
+          <div class="card-meta">
+            <i class="fas fa-pills"></i>
+            <span>Pantoprazole Gastro-Resistant Tablets IP 40 mg</span>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="view-details" onclick="openModal(event, 'karpan-40')">
+              <span>View Details</span> <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-category="capsule" data-name="karpan-d">
+        <div class="card-image-container">
+          <img src="Images/p6.jpeg" alt="KARPAN-D" class="card-image">
+        </div>
+        <div class="card-body">
+          <div class="card-category">Capsule</div>
+          <div class="card-title">KARPAN-D</div>
+          <div class="card-meta">
+            <i class="fas fa-capsules"></i>
+            <span>Pantoprazole & Domperidone Capsules IP</span>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="view-details" onclick="openModal(event, 'karpan-d')">
+              <span>View Details</span> <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-category="antibiotic" data-name="csb-forte">
+        <div class="card-image-container">
+          <img src="Images/p1.jpeg" alt="CSB-FORTE" class="card-image">
+        </div>
+        <div class="card-body">
+          <div class="card-category">Antibiotic / Injection</div>
+          <div class="card-title">CSB-FORTE</div>
+          <div class="card-meta">
+            <i class="fas fa-syringe"></i>
+            <span>Cefoperazone & Sulbactam for Injection - 1.5 gm</span>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="view-details" onclick="openModal(event, 'csb-forte')">
+              <span>View Details</span> <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-category="antibiotic" data-name="pc-taz">
+        <div class="card-image-container">
+          <img src="Images/p2.jpeg" alt="PC-TAZ" class="card-image">
+        </div>
+        <div class="card-body">
+          <div class="card-category">Antibiotic / Injection</div>
+          <div class="card-title">PC-TAZ</div>
+          <div class="card-meta">
+            <i class="fas fa-syringe"></i>
+            <span>Piperacillin & Tazobactam for Injection I.P. - 4.5 g</span>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="view-details" onclick="openModal(event, 'pc-taz')">
+              <span>View Details</span> <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-category="analgesic" data-name="fivmol-iv">
+        <div class="card-image-container">
+          <img src="Images/p8.jpeg" alt="FIVMOL-IV" class="card-image">
+        </div>
+        <div class="card-body">
+          <div class="card-category">Analgesic / Injection</div>
+          <div class="card-title">FIVMOL-IV</div>
+          <div class="card-meta">
+            <i class="fas fa-syringe"></i>
+            <span>Paracetamol Infusion IP - 1000 mg/100 ml</span>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="view-details" onclick="openModal(event, 'fivmol-iv')">
+              <span>View Details</span> <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-category="supplement" data-name="mekmin-tablet">
+        <div class="card-image-container">
+          <img src="Images/p4.jpeg" alt="MEKMIN Tablet" class="card-image">
+        </div>
+        <div class="card-body">
+          <div class="card-category">Supplement / Tablet</div>
+          <div class="card-title">MEKMIN</div>
+          <div class="card-meta">
+            <i class="fas fa-capsules"></i>
+            <span>Multivitamin, Multimineral with Lycopene Tablet</span>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="view-details" onclick="openModal(event, 'mekmin-tablet')">
+              <span>View Details</span> <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-category="supplement" data-name="mekmin-syrup">
+        <div class="card-image-container">
+          <img src="Images/p10.jpeg" alt="MEKMIN Syrup" class="card-image">
+        </div>
+        <div class="card-body">
+          <div class="card-category">Supplement / Syrup</div>
+          <div class="card-title">MEKMIN Syrup</div>
+          <div class="card-meta">
+            <i class="fas fa-capsules"></i>
+            <span>Multivitamin, Multimineral with L-Lysine Syrup - 200ml, Mango Flavour</span>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="view-details" onclick="openModal(event, 'mekmin-syrup')">
+              <span>View Details</span> <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-category="antibiotic" data-name="zaxipenem-1gm">
+        <div class="card-image-container">
+          <img src="Images/p9.jpeg" alt="ZAXIPENEM 1gm" class="card-image">
+        </div>
+        <div class="card-body">
+          <div class="card-category">Antibiotic / Injection</div>
+          <div class="card-title">ZAXIPENEM</div>
+          <div class="card-meta">
+            <i class="fas fa-syringe"></i>
+            <span>Meropenem for Injection I.P. - 1 gm</span>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="view-details" onclick="openModal(event, 'zaxipenem-1gm')">
+              <span>View Details</span> <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-category="antibiotic" data-name="zaxipenem-500mg">
+        <div class="card-image-container">
+          <img src="Images/p7.jpeg" alt="ZAXIPENEM 500mg" class="card-image">
+        </div>
+        <div class="card-body">
+          <div class="card-category">Antibiotic / Injection</div>
+          <div class="card-title">ZAXIPENEM</div>
+          <div class="card-meta">
+            <i class="fas fa-syringe"></i>
+            <span>Meropenem for Injection I.P. - 500 mg</span>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="view-details" onclick="openModal(event, 'zaxipenem-500mg')">
+              <span>View Details</span> <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-category="antibiotic" data-name="zaxipenem-250mg">
+        <div class="card-image-container">
+          <img src="Images/p12.jpeg" alt="ZAXIPENEM 250mg" class="card-image">
+        </div>
+        <div class="card-body">
+          <div class="card-category">Antibiotic / Injection</div>
+          <div class="card-title">ZAXIPENEM</div>
+          <div class="card-meta">
+            <i class="fas fa-syringe"></i>
+            <span>Meropenem for Injection I.P. - 250 mg</span>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="view-details" onclick="openModal(event, 'zaxipenem-250mg')">
+              <span>View Details</span> <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- PRODUCT MODAL -->
+  <div id="productModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-body" id="modalBody">
+        <!-- Modal content will be dynamically inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>MEKSTONE PHARMACEUTICALS LLP</h4>
+        <p>Registered Office:<br>
+          Ground Floor 2nd Cross, A and B Block,<br>
+          Navilu Road, Kuvempunagar, Mysuru - 570023</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="product.html">Products</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="product.html">General Medicine</a></li>
+          <li><a href="product.html">Gynaecology</a></li>
+          <li><a href="product.html">Orthopedics & surgeon</a></li>
+          <li><a href="product.html">Pediatrics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <p><i class="fas fa-envelope"></i> <a
+            href="mailto:contact@mekstonepharmaceutical.com">contact@mekstonepharmaceutical.com</a></p>
+        <p><i class="fas fa-phone"></i> <a href="tel:+0821-3501317">0821-3501317</a></p>
+        <p><i class="fas fa-map-marker-alt"></i> Mysuru, Karnataka, India</p>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 MEKSTONE PHARMACEUTICALS LLP. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" id="backToTop" aria-hidden="true">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // Product data
+    const products = {
+      'karpan-iv': {
+        name: 'KARPAN-IV',
+        category: 'Injection / IV',
+        image: 'Images/p11.jpeg',
+        description: 'KARPAN-IV is a sterile injectable formulation containing Pantoprazole for Injection IP 40 mg. Designed for intravenous administration, this product provides effective treatment for acid-related disorders. For IV Use Only.',
+        details: {
+          'Active Ingredient': 'Pantoprazole for Injection IP',
+          'Dosage': '40 mg',
+          'Formulation': 'Lyophilized Powder for Injection',
+          'Route of Administration': 'For IV Use Only',
+          'Storage': 'Store below 25°C'
+        }
+      },
+      'meksefta': {
+        name: 'MEKSEFTA',
+        category: 'Antibiotic / Injection',
+        image: 'Images/p3.jpeg',
+        description: 'MEKSEFTA is a cephalosporin antibiotic containing Ceftriaxone Injection IP 1 gm. It is effective against a wide range of bacterial infections. For I.M./I.V. Use Only - Single Use Vial.',
+        details: {
+          'Active Ingredient': 'Ceftriaxone Injection IP',
+          'Dosage': '1 gm',
+          'Formulation': 'Injection',
+          'Route of Administration': 'For I.M./I.V. Use Only',
+          'Type': 'Single Use Vial',
+          'Storage': 'Store in a cool, dry place'
+        }
+      },
+      'karpan-40': {
+        name: 'KARPAN-40',
+        category: 'Tablet',
+        image: 'Images/p5.jpeg',
+        description: 'KARPAN-40 contains Pantoprazole Gastro-Resistant Tablets IP 40 mg. This formulation is designed for the treatment of acid-related disorders including GERD, peptic ulcers, and Zollinger-Ellison syndrome.',
+        details: {
+          'Active Ingredient': 'Pantoprazole Gastro-Resistant Tablets IP',
+          'Dosage': '40 mg',
+          'Formulation': 'Gastro-Resistant Tablets',
+          'Pack Size': '10 X 1 X 15 Tablets',
+          'Indication': 'Proton Pump Inhibitor (PPI)',
+          'Storage': 'Store below 30°C'
+        }
+      },
+      'karpan-d': {
+        name: 'KARPAN-D',
+        category: 'Capsule',
+        image: 'Images/p6.jpeg',
+        description: 'KARPAN-D contains Pantoprazole Gastro-resistant and Domperidone Prolonged Release Capsules IP. This combination formulation provides dual action for acid-related disorders with antiemetic properties. Pack: 10 x 15 CAPSULES.',
+        details: {
+          'Active Ingredients': 'Pantoprazole Gastro-resistant & Domperidone Prolonged Release',
+          'Formulation': 'Capsules IP',
+          'Pack Size': '10 x 15 CAPSULES',
+          'Indication': 'PPI with Prokinetic',
+          'Route of Administration': 'Oral',
+          'Storage': 'Store below 30°C',
+          'Prescription': 'Rx Required'
+        }
+      },
+      'csb-forte': {
+        name: 'CSB-FORTE',
+        category: 'Antibiotic / Injection',
+        image: 'Images/p1.jpeg',
+        description: 'CSB-FORTE contains Cefoperazone & Sulbactam for Injection - 1.5 gm. This broad-spectrum antibiotic combination is effective against various bacterial infections. For IM/IV Use Only.',
+        details: {
+          'Active Ingredients': 'Cefoperazone & Sulbactam for Injection',
+          'Dosage': '1.5 gm',
+          'Formulation': 'Sterile Powder for Injection',
+          'Route of Administration': 'For IM/IV Use Only',
+          'Indication': 'Broad Spectrum Antibiotic',
+          'Storage': 'Store below 25°C'
+        }
+      },
+      'pc-taz': {
+        name: 'PC-TAZ',
+        category: 'Antibiotic / Injection',
+        image: 'Images/p2.jpeg',
+        description: 'PC-TAZ contains Piperacillin and Tazobactam for Injection I.P. - 4.5 g (Piperacillin 4.0 g and Tazobactam 0.5 g) Sterile Powder for I.V. Infusion. For Hospital Use Only.',
+        details: {
+          'Active Ingredients': 'Piperacillin and Tazobactam for Injection I.P.',
+          'Dosage': '4.5 g (Piperacillin 4.0 g + Tazobactam 0.5 g)',
+          'Formulation': 'Sterile Powder for I.V. Infusion',
+          'Pack Size': '1 Vial',
+          'Route of Administration': 'For I.V. Use Only',
+          'Indication': 'Broad Spectrum Antibiotic',
+          'Storage': 'Store below 25°C (when reconstituted)',
+          'Note': 'For Hospital Use Only'
+        }
+      },
+      'fivmol-iv': {
+        name: 'FIVMOL-IV',
+        category: 'Analgesic / Injection',
+        image: 'Images/p8.jpeg',
+        description: 'FIVMOL-IV contains Paracetamol Infusion IP (1.0% w/v) - 1000 mg/100 ml. Single Dose Container for intravenous administration. Effective for pain relief and fever reduction.',
+        details: {
+          'Active Ingredient': 'Paracetamol Infusion IP',
+          'Concentration': '1.0% w/v',
+          'Dosage': '1000 mg/100 ml',
+          'Volume': '100 ml',
+          'Formulation': 'Single Dose Container',
+          'Route of Administration': 'For IV Use Only',
+          'Indication': 'Analgesic & Antipyretic',
+          'Storage': 'Store in a cool, dry place'
+        }
+      },
+      'mekmin-tablet': {
+        name: 'MEKMIN',
+        category: 'Supplement / Tablet',
+        image: 'Images/p4.jpeg',
+        description: 'MEKMIN is a comprehensive multivitamin and multimineral supplement with Lycopene Tablets. Designed to support robust immune health, sustained daily vitality, and cellular protection. Pack: 15 x 2 Strips.',
+        details: {
+          'Active Ingredients': 'Multivitamin, Multimineral with Lycopene',
+          'Formulation': 'Tablets',
+          'Pack Size': '15 x 2 Strips',
+          'Category': 'NUTRACEUTICALS',
+          'Benefits': 'Robust Immune Health, Sustained Daily Vitality, Cellular Protection',
+          'Storage': 'Store in a cool, dry place'
+        }
+      },
+      'mekmin-syrup': {
+        name: 'MEKMIN Syrup',
+        category: 'Supplement / Syrup',
+        image: 'Images/p10.jpeg',
+        description: 'MEKMIN Syrup is a multivitamin, multimineral formulation with L-Lysine Syrup. Specially designed for children with mango flavour. Contains 200ml per bottle. Category: NUTRACEUTICALS.',
+        details: {
+          'Active Ingredients': 'Multivitamin, Multimineral with L-Lysine',
+          'Formulation': 'Syrup',
+          'Volume': '200ml',
+          'Flavour': 'Mango Flavour',
+          'Category': 'NUTRACEUTICALS',
+          'Target Audience': 'Children',
+          'Storage': 'Store in a cool, dry place'
+        }
+      },
+      'zaxipenem-1gm': {
+        name: 'ZAXIPENEM',
+        category: 'Antibiotic / Injection',
+        image: 'Images/p9.jpeg',
+        description: 'ZAXIPENEM is a broad-spectrum carbapenem antibiotic containing Meropenem for Injection I.P. 1 gm. Effective against a wide range of gram-positive and gram-negative bacteria. For I.V. Use Only.',
+        details: {
+          'Active Ingredient': 'Meropenem for Injection I.P.',
+          'Dosage': '1 gm',
+          'Formulation': 'Sterile Powder for Injection',
+          'Route of Administration': 'For I.V. Use Only',
+          'Indication': 'Broad Spectrum Antibiotic',
+          'Storage': 'Store below 25°C',
+          'Reconstitution': 'Reconstitute as directed by physician'
+        }
+      },
+      'zaxipenem-500mg': {
+        name: 'ZAXIPENEM',
+        category: 'Antibiotic / Injection',
+        image: 'Images/p7.jpeg',
+        description: 'ZAXIPENEM is a broad-spectrum carbapenem antibiotic containing Meropenem for Injection I.P. 500 mg. Effective against a wide range of gram-positive and gram-negative bacteria. For I.V. Use Only.',
+        details: {
+          'Active Ingredient': 'Meropenem for Injection I.P.',
+          'Dosage': '500 mg',
+          'Formulation': 'Sterile Powder for Injection',
+          'Route of Administration': 'For I.V. Use Only',
+          'Indication': 'Broad Spectrum Antibiotic',
+          'Storage': 'Store below 25°C',
+          'Reconstitution': 'Reconstitute as directed by physician'
+        }
+      },
+      'zaxipenem-250mg': {
+        name: 'ZAXIPENEM',
+        category: 'Antibiotic / Injection',
+        image: 'Images/p12.jpeg',
+        description: 'ZAXIPENEM is a broad-spectrum carbapenem antibiotic containing Meropenem for Injection I.P. 250 mg. Effective against a wide range of gram-positive and gram-negative bacteria. For I.V. Use Only.',
+        details: {
+          'Active Ingredient': 'Meropenem for Injection I.P.',
+          'Dosage': '250 mg',
+          'Formulation': 'Sterile Powder for Injection',
+          'Route of Administration': 'For I.V. Use Only',
+          'Indication': 'Broad Spectrum Antibiotic',
+          'Storage': 'Store below 25°C',
+          'Reconstitution': 'Reconstitute as directed by physician'
+        }
+      }
+    };
+
+    // Loading Animation
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      setTimeout(() => { loader.classList.add('hidden'); }, 500);
+    });
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('fa-times');
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('fa-times');
+      });
+    });
+
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const grid = document.getElementById('grid');
+    const cards = Array.from(grid.querySelectorAll('.card'));
+    const noResults = document.getElementById('noResults');
+
+    function filterProducts() {
+      const searchTerm = searchInput.value.trim().toLowerCase();
+      const categoryValue = categoryFilter.value.toLowerCase();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const cardName = card.getAttribute('data-name').toLowerCase();
+        const cardCategory = card.getAttribute('data-category').toLowerCase();
+        const cardTitle = card.querySelector('.card-title').textContent.toLowerCase();
+
+        const matchesSearch = cardName.includes(searchTerm) || cardTitle.includes(searchTerm);
+        const matchesCategory = !categoryValue || cardCategory === categoryValue;
+
+        if (matchesSearch && matchesCategory) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (visibleCount === 0) {
+        noResults.classList.add('show');
+        grid.style.display = 'none';
+      } else {
+        noResults.classList.remove('show');
+        grid.style.display = 'grid';
+      }
+    }
+
+    searchInput.addEventListener('input', filterProducts);
+    categoryFilter.addEventListener('change', filterProducts);
+
+    // View Toggle
+    const viewButtons = document.querySelectorAll('.view-btn');
+    const gridContainer = document.getElementById('grid');
+
+    viewButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const view = btn.getAttribute('data-view');
+        viewButtons.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+        gridContainer.classList.toggle('list-view', view === 'list');
+      });
+    });
+
+    // Modal functionality with pharmaceutical icons
+    function openModal(event, productId) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+      }
+
+      const product = products[productId];
+      if (!product) return;
+
+      const modal = document.getElementById('productModal');
+      const modalBody = document.getElementById('modalBody');
+
+      // Get current scroll position before opening modal
+      const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+      modalBody.innerHTML = `
+        <div class="modal-image-container">
+          <i class="fas fa-pills pharma-icon icon-1"></i>
+          <i class="fas fa-syringe pharma-icon icon-2"></i>
+          <i class="fas fa-capsules pharma-icon icon-3"></i>
+          <i class="fas fa-flask pharma-icon icon-4"></i>
+          <i class="fas fa-prescription-bottle pharma-icon icon-5"></i>
+          <i class="fas fa-heartbeat pharma-icon icon-6"></i>
+          <img src="${product.image}" alt="${product.name}" class="modal-image">
+        </div>
+        <div class="modal-info">
+          <div class="modal-category">
+            <i class="fas ${product.category.includes('Injection') ? 'fa-syringe' : product.category.includes('Capsule') ? 'fa-capsules' : product.category.includes('Tablet') ? 'fa-pills' : 'fa-flask'}"></i>
+            ${product.category}
+          </div>
+          <h2>${product.name}</h2>
+          <p>${product.description}</p>
+          <div class="modal-details">
+            <h3>Product Details</h3>
+            <ul>
+              ${Object.entries(product.details).map(([key, value]) =>
+        `<li><strong>${key}:</strong> ${value}</li>`
+      ).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
+
+      // Lock body scroll
+      const body = document.body;
+      const html = document.documentElement;
+
+      body.style.position = 'fixed';
+      body.style.top = `-${currentScrollY}px`;
+      body.style.left = '0';
+      body.style.right = '0';
+      body.style.width = '100%';
+      body.style.overflow = 'hidden';
+      html.style.overflow = 'hidden';
+
+      modal.classList.add('show');
+      modal.dataset.scrollY = currentScrollY;
+      window.scrollTo(0, currentScrollY);
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('productModal');
+      modal.classList.remove('show');
+
+      const scrollY = modal.dataset.scrollY || 0;
+      const body = document.body;
+      const html = document.documentElement;
+
+      body.style.position = '';
+      body.style.top = '';
+      body.style.left = '';
+      body.style.right = '';
+      body.style.width = '';
+      body.style.overflow = '';
+      html.style.overflow = '';
+
+      window.scrollTo(0, scrollY);
+      setTimeout(() => { window.scrollTo(0, scrollY); }, 10);
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    // Close modal on outside click
+    document.getElementById('productModal').addEventListener('click', (e) => {
+      if (e.target.id === 'productModal') { closeModal(); }
+    });
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { closeModal(); }
+    });
+
+    // Back to Top Button
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) { backToTop.classList.add('visible'); }
+      else { backToTop.classList.remove('visible'); }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
