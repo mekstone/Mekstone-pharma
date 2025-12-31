@@ -914,38 +914,47 @@
     const searchInput = document.getElementById('searchInput');
     const categoryFilter = document.getElementById('categoryFilter');
 
-    function renderProducts(filterText = '', filterCat = '') {
-      grid.innerHTML = '';
-      let count = 0;
+     function renderProducts(filterText = '', filterCat = '') {
+  grid.innerHTML = '';
+  let count = 0;
 
-      Object.entries(products).forEach(([id, product]) => {
-        const matchText = product.name.toLowerCase().includes(filterText.toLowerCase());
-        const matchCat = filterCat === '' || product.category.toLowerCase().includes(filterCat.toLowerCase());
+  filterText = filterText.toLowerCase();
+  filterCat = filterCat.toLowerCase();
 
-        if (matchText && matchCat) {
-          count++;
-          const card = document.createElement('div');
-          card.className = 'card';
-          card.onclick = (e) => openModal(e, id);
-          card.innerHTML = `
-            <div class="card-image-container">
-              <img src="${product.image}" class="card-image" alt="${product.name}">
-            </div>
-            <div class="card-body">
-              <div class="card-title">${product.name}</div>
-              <div class="card-category">${product.category}</div>
-              <div class="card-footer">
-                <span class="price-tag"></span>
-                <button class="action-btn"><i class="fas fa-arrow-right"></i></button>
-              </div>
-            </div>
-          `;
-          grid.appendChild(card);
-        }
-      });
+  Object.entries(products).forEach(([id, product]) => {
 
-      noResults.style.display = count === 0 ? 'block' : 'none';
+    const nameMatch = product.name.toLowerCase().includes(filterText);
+    const categoryMatch = product.category.toLowerCase().includes(filterText);
+
+    const searchMatch = filterText === '' || nameMatch || categoryMatch;
+    const filterMatch = filterCat === '' || product.category.toLowerCase().includes(filterCat);
+
+    if (searchMatch && filterMatch) {
+      count++;
+
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.onclick = (e) => openModal(e, id);
+
+      card.innerHTML = `
+        <div class="card-image-container">
+          <img src="${product.image}" class="card-image" alt="${product.name}">
+        </div>
+        <div class="card-body">
+          <div class="card-title">${product.name}</div>
+          <div class="card-category">${product.category}</div>
+          <div class="card-footer">
+            <button class="action-btn"><i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+      `;
+
+      grid.appendChild(card);
     }
+  });
+
+  noResults.style.display = count === 0 ? 'block' : 'none';
+}
 
     // Initial Render
     renderProducts();
