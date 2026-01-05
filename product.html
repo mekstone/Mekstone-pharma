@@ -16,20 +16,17 @@
        ORIGINAL VARIABLES & BASE STYLES
        ========================================= */
     :root {
-      /* Original Brand Colors */
+      /* Reverted Brand Colors */
       --primary: #005b96;
       --secondary: #0a75c2;
       --accent: #8cc63f;
-      --text-dark: #2c3e50;
-      --text-light: #6d7a8a;
+      --text-main: #2c3e50;
+      --text-muted: #6d7a8a;
       --white: #ffffff;
       --light-bg: #f4f9ff;
-
-      /* New Design Variables (Lavender Theme) for Body/Cards */
-      --lavender-bg: #eaddff;
-      --card-bg: rgba(255, 255, 255, 0.45);
-      --input-bg: rgba(255, 255, 255, 0.6);
-      --black-accent: #1a1a1a;
+      --glass-bg: rgba(255, 255, 255, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.5);
+      --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     }
 
     * {
@@ -44,11 +41,11 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: var(--lavender-bg);
-      /* Use new background for the main page area */
+      background-color: var(--light-bg);
+      min-height: 100vh;
       overflow-x: hidden;
       line-height: 1.6;
-      color: var(--text-dark);
+      color: var(--text-main);
     }
 
     /* =========================================
@@ -104,7 +101,7 @@
 
     .nav-links a {
       text-decoration: none;
-      color: var(--text-dark);
+      color: var(--text-main);
       font-weight: 600;
       font-size: 0.95rem;
       position: relative;
@@ -155,7 +152,7 @@
     .hero {
       height: 40vh;
       min-height: 300px;
-      background: linear-gradient(135deg, rgba(0, 91, 150, 0.8), rgba(10, 117, 194, 0.8)),
+      background: linear-gradient(135deg, rgba(0, 91, 150, 0.7), rgba(0, 91, 150, 0.9)),
         url('Images/Mekstone Logo.jpg') center/cover no-repeat;
       background-attachment: fixed;
       display: flex;
@@ -169,14 +166,20 @@
       margin-bottom: 50px;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+      color: #fff;
+      -webkit-text-fill-color: initial;
+      background: none;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      opacity: 0.95;
+      color: #fff;
     }
 
     .hero>div {
@@ -208,116 +211,91 @@
 
     /* Controls Container - Advanced Glass Design */
     .controls-container {
-      max-width: 900px;
-      /* Narrower for focus */
-      margin: -40px auto 60px;
-      /* Overlap hero slightly for depth */
-      padding: 0 40px;
+      max-width: 1000px;
+      margin: -20px auto 40px;
+      padding: 0 20px;
       position: relative;
       z-index: 10;
     }
 
     .search-bar-glass {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 60px;
-      padding: 8px 8px 8px 25px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(25px);
+      border-radius: 24px;
+      padding: 12px 12px 12px 30px;
       display: flex;
       align-items: center;
       gap: 15px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(0, 0, 0, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .search-bar-glass:focus-within {
-      transform: translateY(-5px) scale(1.01);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12), 0 10px 30px rgba(0, 0, 0, 0.08);
-      background: rgba(255, 255, 255, 0.98);
-      border-color: #fff;
+      background: rgba(255, 255, 255, 0.95);
+      transform: translateY(-5px);
+      box-shadow: 0 30px 60px rgba(79, 70, 229, 0.1);
+      border-color: var(--primary);
     }
 
     .search-icon {
-      color: #888;
-      font-size: 1.2rem;
-      transition: color 0.3s;
-    }
-
-    .search-bar-glass:focus-within .search-icon {
-      color: var(--secondary);
+      color: var(--primary);
+      font-size: 1.4rem;
     }
 
     .search-input {
       flex: 1;
-      width: 100%;
       background: transparent;
       border: none;
       font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-main);
       outline: none;
-      color: #333;
-      padding: 10px 0;
-      font-family: inherit;
     }
 
-    .search-input::placeholder {
-      color: #aaa;
-      font-weight: 300;
-    }
-
-    .filter-btn {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--black-accent);
-      color: white;
-      border: none;
+    /* Category Pills Navigation */
+    .category-pills {
       display: flex;
-      align-items: center;
+      gap: 12px;
+      margin: 25px auto;
+      max-width: 1000px;
+      padding: 0 20px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
       justify-content: center;
-      font-size: 1.2rem;
-      cursor: pointer;
-      flex-shrink: 0;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
-    .filter-btn:hover {
-      background: #000;
-      transform: rotate(90deg);
-    }
-
-    .filter-btn:active {
-      transform: scale(0.9);
-    }
-
-
-    .filter-dropdown {
-      position: absolute;
-      top: 110%;
-      right: 10px;
-      background: white;
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-      z-index: 100;
+    .category-pills::-webkit-scrollbar {
       display: none;
-      min-width: 250px;
     }
 
-    .filter-dropdown.active {
-      display: block;
-      animation: slideUp 0.3s ease;
-    }
-
-    .filter-dropdown select {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #eee;
-      outline: none;
-      background: #f9f9f9;
+    .pill {
+      padding: 10px 24px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      font-weight: 600;
       cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .pill:hover {
+      transform: translateY(-2px);
+      background: var(--white);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .pill.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
     }
 
     /* Grid layout */
@@ -330,68 +308,86 @@
       padding: 0 10px 80px;
     }
 
-    /* New Card Style */
+    /* Highlighted Card Design */
     .card {
-      background: var(--card-bg);
-      border-radius: 35px;
-      padding: 15px;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.6);
+      background: var(--white);
+      border-radius: 24px;
+      padding: 12px;
+      border: 1px solid #eee;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       display: flex;
       flex-direction: column;
-      cursor: pointer;
       position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .card.reveal {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .card:hover {
-      background: rgba(255, 255, 255, 0.9);
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(100, 50, 200, 0.1);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      border-color: var(--primary);
     }
 
     .card-image-container {
-      background: #ffffff;
-      border-radius: 25px;
-      height: 220px;
+      background: #fdfdfd;
+      border-radius: 18px;
+      height: 280px;
+      /* Taller for better visibility */
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 15px;
+      padding: 15px;
       overflow: hidden;
-      padding: 20px;
+      position: relative;
+      border: 1px solid #f5f5f5;
+      box-shadow: inset 0 0 0 0px rgba(0, 91, 150, 0);
+      /* Initial inner glow */
+      transition: box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .card:hover .card-image-container {
+      box-shadow: inset 0 0 15px 3px rgba(0, 91, 150, 0.1);
+      /* Subtle inner glow on hover */
     }
 
     .card-image {
-      max-width: 100%;
-      max-height: 100%;
+      max-width: 90%;
+      max-height: 90%;
       object-fit: contain;
-      transition: transform 0.4s ease;
+      filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.08));
+      transition: all 0.5s ease;
     }
 
     .card:hover .card-image {
-      transform: scale(1.1);
-    }
-
-    .card-body {
-      padding: 0 10px 10px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
+      transform: scale(1.05);
+      /* Refined hover zoom */
+      filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.15));
     }
 
     .card-title {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      color: #1a1a1a;
+      color: var(--primary);
       margin-bottom: 5px;
+      padding: 0 10px;
     }
 
     .card-category {
-      font-size: 0.85rem;
-      color: #666;
-      margin-bottom: 15px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      padding: 0 10px;
     }
 
     .card-footer {
@@ -399,24 +395,34 @@
       justify-content: space-between;
       align-items: center;
       margin-top: auto;
+      padding: 10px;
+      background: #fcfcfc;
+      border-radius: 0 0 24px 24px;
+      border-top: 1px solid #f5f5f5;
+    }
+
+    .quick-view-text {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
     }
 
     .action-btn {
       width: 40px;
       height: 40px;
-      border-radius: 50%;
-      background: var(--black-accent);
+      border-radius: 12px;
+      background: var(--primary);
       color: white;
       border: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
     }
 
     .card:hover .action-btn {
+      background: var(--accent);
       transform: scale(1.1);
-      background: #000;
     }
 
     /* New Modal Style */
@@ -476,11 +482,11 @@
 
     .modal-body {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.2fr 1fr;
     }
 
     .modal-image-area {
-      background: #f3e8ff;
+      background: linear-gradient(135deg, #f5f7ff 0%, #ffffff 100%);
       padding: 40px;
       display: flex;
       align-items: center;
@@ -761,7 +767,6 @@
     }
   </style>
 
-  <!-- ORIGINAL NAVBAR -->
   <nav id="navbar">
     <div class="logo" onclick="window.location.href='index.html'">
       <img src="Images/Mekstone Logo.jpg" alt="Mekstone Logo">
@@ -788,28 +793,22 @@
 
   <!-- MAIN CONTENT (Lavender Design) -->
   <main class="main-wrapper">
-    <!-- CONTROLS -->
+    <!-- ADVANCED CONTROLS -->
     <div class="controls-container">
       <div class="search-bar-glass">
         <i class="fas fa-search search-icon"></i>
-        <input type="search" id="searchInput" class="search-input" placeholder="Search product name or category...">
-
-        <button class="filter-btn" id="filterBtn" aria-label="Filter Options">
-          <i class="fas fa-sliders-h"></i>
-        </button>
+        <input type="search" id="searchInput" class="search-input" placeholder="What are you looking for today?">
       </div>
 
-      <div class="filter-dropdown" id="filterDropdown">
-        <h4>Filter By Category</h4>
-        <select id="categoryFilter">
-          <option value="">All Categories</option>
-          <option value="injection">Injections</option>
-          <option value="tablet">Tablets</option>
-          <option value="capsule">Capsules</option>
-          <option value="supplement">Supplements</option>
-          <option value="antibiotic">Antibiotics</option>
-          <option value="analgesic">Analgesics</option>
-        </select>
+      <!-- Category Navigation Pills -->
+      <div class="category-pills" id="categoryPills">
+        <div class="pill active" data-category="">All Products</div>
+        <div class="pill" data-category="injection">Injections</div>
+        <div class="pill" data-category="tablet">Tablets</div>
+        <div class="pill" data-category="capsule">Capsules</div>
+        <div class="pill" data-category="supplement">Supplements</div>
+        <div class="pill" data-category="antibiotic">Antibiotics</div>
+        <div class="pill" data-category="analgesic">Analgesics</div>
       </div>
     </div>
 
@@ -885,11 +884,11 @@
     const products = {
       'karpan-iv': { name: 'KARPAN-IV', category: 'Injection / IV', image: 'Images/p11.jpeg', description: 'Sterile injectable formulation containing Pantoprazole 40mg.', details: { 'Dosage': '40mg', 'Type': 'Injection' } },
       'meksefta': { name: 'MEKSEFTA', category: 'Antibiotic / Injection', image: 'Images/p3.jpeg', description: 'Ceftriaxone Injection IP 1 gm. Effective against bacterial infections.', details: { 'Dosage': '1gm', 'Type': 'Single Use Vial' } },
-      'karpan-40': { name: 'KARPAN-40', category: 'Tablet', image: 'Images/p5.jpeg', description: 'Pantoprazole Gastro-Resistant Tablets IP 40 mg.', details: { 'Pack Size': '10x15 Tablets', 'Indication': 'GERD' } },
-      'karpan-d': { name: 'KARPAN-D', category: 'Capsule', image: 'Images/p6.jpeg', description: 'Pantoprazole & Domperidone Capsules IP.', details: { 'Pack Size': '10x15 Capsules', 'Indication': 'Acid Reflux' } },
+      'karpan-40': { name: 'KARPAN-40', category: 'Tablet/PPI', image: 'Images/p5.jpeg', description: 'Pantoprazole Gastro-Resistant Tablets IP 40 mg.', details: { 'Pack Size': '10x15 Tablets', 'Indication': 'GERD' } },
+      'karpan-d': { name: 'KARPAN-D', category: ' TABLET/PPI', image: 'Images/p6.jpeg', description: 'Pantoprazole & Domperidone Capsules IP.', details: { 'Pack Size': '10x15 Capsules', 'Indication': 'Acid Reflux' } },
       'csb-forte': { name: 'CSB-FORTE', category: 'Antibiotic / Injection', image: 'Images/p1.jpeg', description: 'Cefoperazone & Sulbactam for Injection - 1.5 gm.', details: { 'Dosage': '1.5gm', 'Type': 'Injection' } },
       'pc-taz': { name: 'PC-TAZ', category: 'Antibiotic / Injection', image: 'Images/p2.jpeg', description: 'Piperacillin & Tazobactam - 4.5g.', details: { 'Dosage': '4.5g', 'Use': 'Hospital Use Only' } },
-      'fivmol-iv': { name: 'FIVMOL-IV', category: 'Analgesic / Injection', image: 'Images/p8.jpeg', description: 'Paracetamol Infusion IP 1000 mg/100 ml.', details: { 'Volume': '100ml', 'Type': 'Infusion' } },
+      'ANALGESIC-iv': { name: 'ANALGESIC-IV', category: 'Analgesic / Injection', image: 'Images/p8.jpeg', description: 'Paracetamol Infusion IP 1000 mg/100 ml.', details: { 'Volume': '100ml', 'Type': 'Infusion' } },
       'mekmin-tablet': { name: 'MEKMIN', category: 'Supplement / Tablet', image: 'Images/p4.jpeg', description: 'Multivitamin, Multimineral with Lycopene.', details: { 'Pack Size': '15 x 2 Strips' } },
       'mekmin-syrup': { name: 'MEKMIN Syrup', category: 'Supplement / Syrup', image: 'Images/p10.jpeg', description: 'Multivitamin Syrup for Children (Mango Flavour).', details: { 'Volume': '200ml' } },
       'zaxipenem-1gm': { name: 'ZAXIPENEM', category: 'Antibiotic / Injection', image: 'Images/p9.jpeg', description: 'Meropenem Injection IP 1 gm.', details: { 'Dosage': '1gm' } },
@@ -898,88 +897,87 @@
       'csb-nova': { name: 'CSB-NOVA', category: 'Antibiotic / Injection', image: 'Images/csb-nova.jpg', description: 'Cefoperazone & Sulbactam 1.5gm.', details: { 'Dosage': '1.5gm' } },
       'hemomek-xt': { name: 'HEMOMEK-XT', category: 'Supplement / Tablet', image: 'Images/hemomek-xt.jpg', description: 'Ferrous Ascorbate and Folic Acid.', details: { 'Type': 'Haematinic' } },
       'knowncal-forte': { name: 'KNOWNCAL FORTE', category: 'Supplement / Tablet', image: 'Images/knowncal-forte.jpg', description: 'Calcium Citrate, Magnesium, Vitamin D3 & Zinc.', details: { 'Type': 'Calcium Supplement' } },
-      'reliefer-gel': { name: 'RELIEFER GEL', category: 'Analgesic / Gel', image: 'Images/reliefer-gel.jpg', description: 'Pain relief gel with Diclofenac.', details: { 'Net Weight': '30g' } },
-      'glimemek-gp1': { name: 'GLIMEMEK-GP1', category: 'Tablet / Antidiabetic', image: 'Images/glimemek-gp1.jpg', description: 'Metformin & Glimepiride Tablets.', details: { 'Indication': 'Diabetes' } },
-      'MEK CV BID': { name: 'MEKCV BID', category: 'Supplement/syrup', image: 'Images/p13.jpeg', description: 'Amoxycillin and potassium Clavulanate', details: { 'Dosage': '228.5mg' } },
-      'MEK CV FORTE': { name: 'MEK CV FORTE', category: 'Supplement / Syrup', image: 'Images/p14.jpeg', description: 'Amoxycillin and potassium Clavulanate for oral suspension IP.', details: { 'Dosage': '457mg' } },
-      'MEK CV 625': { name: 'MEK CV 625', category: 'Tablet / Antidiabetic', image: 'Images/p15.jpeg', description: 'Amoxycillin & potassium Clavulanate Tablet IP', details: { 'Type': 'Tablet' } },
-      'RELIEER-P': { name: 'RELIEER-P', category: 'Tablet / Antidiabetic', image: 'Images/p16.jpeg', description: 'Aceclofenac & Paracetamol Tablet', details: { 'Type': 'Tablet' } },
-      'RELIEER-SP': { name: 'RELIEER-SP', category: 'Tablet/ Antidiabetic', image: 'Images/p17.jpeg', description: 'Aceclofenac Paracetamol & Serratiopeptidase Tablets', details: { 'Type': 'Tablet' } },
-      'GLIMEMEK-GP2': { name: 'GLIMEMEK-GP2', category: 'Capsule/Tablet', image: 'Images/p18.jpeg', description: 'Metformin Hydrochloride & Glimepiride Tablets', details: { 'Indication': 'Diabetes' } },
+      'reliefer-gel': { name: 'RELIEFER GEL', category: 'Analgesic / Gel/ releifer p & releifer sp', image: 'Images/reliefer-gel.jpg', description: 'Pain relief gel with Diclofenac.', details: { 'Net Weight': '30g' } },
+      'glimemek-gp1': { name: 'GLIMEMEK-GP1', category: 'Tablet / ANTIDIABETIC', image: 'Images/glimemek-gp1.jpg', description: 'Metformin & Glimepiride Tablets.', details: { 'Indication': 'Diabetes' } },
+      'MEK CV BID': { name: 'MEKCV BID', category: 'Dry syrup', image: 'Images/p13.jpeg', description: 'Amoxycillin and potassium Clavulanate', details: { 'Dosage': '228.5mg' } },
+      'MEK CV FORTE': { name: 'MEK CV FORTE', category: 'Dry Syrup', image: 'Images/p14.jpeg', description: 'Amoxycillin and potassium Clavulanate for oral suspension IP.', details: { 'Dosage': '457mg' } },
+      'MEK CV 625': { name: 'MEK CV 625', category: 'Tablet / ANTIBIOTIC', image: 'Images/p15.jpeg', description: 'Amoxycillin & potassium Clavulanate Tablet IP', details: { 'Type': 'Tablet' } },
+      'RELIEER-P': { name: 'RELIEER-P', category: 'Tablet / ANALGESIC', image: 'Images/p16.jpeg', description: 'Aceclofenac & Paracetamol Tablet', details: { 'Type': 'Tablet' } },
+      'RELIEER-SP': { name: 'RELIEER-SP', category: 'Tablet/ ANALGESIC', image: 'Images/p17.jpeg', description: 'Aceclofenac Paracetamol & Serratiopeptidase Tablets', details: { 'Type': 'Tablet' } },
+      'GLIMEMEK-GP2': { name: 'GLIMEMEK-GP2', category: 'Tablet/ANTIDIABETIC', image: 'Images/p18.jpeg', description: 'Metformin Hydrochloride & Glimepiride Tablets', details: { 'Indication': 'Diabetes' } },
     };
 
     // Initialize Grid
     const grid = document.getElementById('grid');
     const noResults = document.getElementById('noResults');
     const searchInput = document.getElementById('searchInput');
-    const categoryFilter = document.getElementById('categoryFilter');
+    // const categoryFilter = document.getElementById('categoryFilter'); // Removed
 
-     function renderProducts(filterText = '', filterCat = '') {
-  grid.innerHTML = '';
-  let count = 0;
+    function renderProducts(filterText = '', filterCat = '') {
+      grid.innerHTML = '';
+      let count = 0;
 
-  filterText = filterText.toLowerCase();
-  filterCat = filterCat.toLowerCase();
+      filterText = filterText.toLowerCase();
+      filterCat = filterCat.toLowerCase();
 
-  Object.entries(products).forEach(([id, product]) => {
+      Object.entries(products).forEach(([id, product], index) => {
+        const nameMatch = product.name.toLowerCase().includes(filterText);
+        const categoryMatch = product.category.toLowerCase().includes(filterText);
 
-    const nameMatch = product.name.toLowerCase().includes(filterText);
-    const categoryMatch = product.category.toLowerCase().includes(filterText);
+        const searchMatch = filterText === '' || nameMatch || categoryMatch;
+        const filterMatch = filterCat === '' || product.category.toLowerCase().includes(filterCat);
 
-    const searchMatch = filterText === '' || nameMatch || categoryMatch;
-    const filterMatch = filterCat === '' || product.category.toLowerCase().includes(filterCat);
+        if (searchMatch && filterMatch) {
+          count++;
 
-    if (searchMatch && filterMatch) {
-      count++;
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.onclick = (e) => openModal(e, id);
 
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.onclick = (e) => openModal(e, id);
+          // Add staggered delay for animation
+          card.style.transitionDelay = `${(count % 8) * 0.1}s`;
 
-      card.innerHTML = `
-        <div class="card-image-container">
-          <img src="${product.image}" class="card-image" alt="${product.name}">
-        </div>
-        <div class="card-body">
-          <div class="card-title">${product.name}</div>
-          <div class="card-category">${product.category}</div>
-          <div class="card-footer">
-            <button class="action-btn"><i class="fas fa-arrow-right"></i></button>
-          </div>
-        </div>
-      `;
+          card.innerHTML = `
+            <div class="card-image-container">
+              <img src="${product.image}" class="card-image" alt="${product.name}">
+            </div>
+            <div class="card-title">${product.name}</div>
+            <div class="card-category">${product.category}</div>
+            <div class="card-footer">
+              <span class="quick-view-text">Quick View</span>
+              <button class="action-btn"><i class="fas fa-plus"></i></button>
+            </div>
+          `;
 
-      grid.appendChild(card);
+          grid.appendChild(card);
+
+          // Trigger reveal after a short timeout
+          setTimeout(() => card.classList.add('reveal'), 100);
+        }
+      });
+
+      noResults.style.display = count === 0 ? 'block' : 'none';
     }
-  });
 
-  noResults.style.display = count === 0 ? 'block' : 'none';
-}
 
     // Initial Render
     renderProducts();
 
-    // Event Listeners
+    // Category Pills Logic
+    const categoryPills = document.querySelectorAll('.pill');
+    let currentCategory = '';
+
+    categoryPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        categoryPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        currentCategory = pill.dataset.category;
+        renderProducts(searchInput.value, currentCategory);
+      });
+    });
+
     searchInput.addEventListener('input', (e) => {
-      renderProducts(e.target.value, categoryFilter.value);
-    });
-
-    categoryFilter.addEventListener('change', (e) => {
-      renderProducts(searchInput.value, e.target.value);
-    });
-
-    // Filter Toggle
-    const filterBtn = document.getElementById('filterBtn');
-    const filterDropdown = document.getElementById('filterDropdown');
-    filterBtn.addEventListener('click', () => {
-      filterDropdown.classList.toggle('active');
-    });
-
-    // Close dropdown on outside click
-    document.addEventListener('click', (e) => {
-      if (!filterBtn.contains(e.target) && !filterDropdown.contains(e.target)) {
-        filterDropdown.classList.remove('active');
-      }
+      renderProducts(e.target.value, currentCategory);
     });
 
     // Modal
@@ -1030,6 +1028,26 @@
         navLinks.classList.toggle('active');
         menuToggle.classList.toggle('fa-times');
       });
+    }
+
+    // Scroll Reveal for existing elements
+    const observerOptions = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal');
+        }
+      });
+    }, observerOptions);
+
+    // Initial reveal for cards is handled in renderProducts
+    // But we can observe hero and other parts
+    observer.observe(document.querySelector('.hero-content'));
+    if (heroContent) {
+      observer.observe(heroContent);
     }
   </script>
 </body>
